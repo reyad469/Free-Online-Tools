@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Tools - Essential Tools for Coders</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn-icons-png.flaticon.com/512/5968/5968282.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn-icons-png.flaticon.com/512/5968/5968282.png">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968282.png">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #000000;
+            --text: #2E3233;
+            --accent: #01AEF2;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Always Collapsed Navigation Header */
+.dev-header {
+    background-color: var(--primary);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.dev-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dev-logo {
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.dev-logo span {
+    margin-left: 0.5rem;
+}
+
+.dev-menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+    z-index: 10;
+    outline: none;
+}
+
+.dev-menu-toggle.active {
+    transform: rotate(90deg);
+}
+
+.dev-menu-wrapper {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--primary);
+    transition: right 0.3s ease-in-out;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 9;
+    padding-top: 4rem;
+    overflow-y: auto; /* Enable vertical scrolling */
+    display: flex;
+    flex-direction: column;
+}
+
+.dev-menu-wrapper.show-menu {
+    right: 0;
+}
+
+.dev-menu {
+    list-style: none;
+    padding: 0 0 2rem 0; /* Added bottom padding for scrolling space */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.dev-menu li {
+    margin: 0;
+    padding: 0;
+}
+
+.dev-menu a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.85rem 1.5rem;
+    display: block;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.dev-menu a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.dev-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 8;
+    display: none;
+}
+
+.dev-overlay.show-overlay {
+    display: block;
+}
+        
+        /* Rest of your existing CSS */
+        .header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .header-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent);
+        }
+        
+        /* New Tool Layout - Horizontal Cards */
+        .tools-container {
+            padding: 2rem 0;
+        }
+        
+        .tool-card {
+            display: flex;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tool-card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .tool-image {
+            flex: 0 0 300px;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .tool-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .tool-card:hover .tool-image img {
+            transform: scale(1.1);
+        }
+        
+        .tool-content {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .tool-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tool-number {
+            background-color: var(--accent);
+            color: var(--white);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .tool-url {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: block;
+        }
+        
+        .tool-description {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        .tool-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            align-self: flex-start;
+            box-shadow: 0 4px 10px rgba(1, 174, 242, 0.3);
+        }
+        
+        .tool-button:hover {
+            background-color: #0099d6;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(1, 174, 242, 0.4);
+        }
+        
+        /* Features Section */
+        .why-use {
+            background-color: var(--light-gray);
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-item {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        /* Use Cases Section */
+        .use-cases {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+        
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .use-case-item {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            transition: transform 0.3s;
+            border-top: 4px solid var(--accent);
+        }
+        
+        .use-case-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .use-case-icon {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .use-case-text {
+            font-size: 1.1rem;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background-color: var(--light-gray);
+            padding: 5rem 0;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: var(--white);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .faq-question:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .toggle {
+            background-color: var(--accent);
+            color: var(--white);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .toggle {
+            transform: rotate(135deg);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 6rem 0;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-text {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(1, 174, 242, 0.3);
+        }
+        
+        .cta-button:hover {
+            background-color: #0099d6;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(1, 174, 242, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 900px) {
+            .tool-card, .tool-card:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .tool-image {
+                flex: 0 0 200px;
+                width: 100%;
+            }
+            
+            .header-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .header-title {
+                font-size: 1.8rem;
+            }
+            
+            .header-description, .tool-description, .cta-text {
+                font-size: 1rem;
+            }
+            
+            .tool-title {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        /* Add this at the end of the existing style section */
+        .scroll-top-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            text-align: center;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+            z-index: 9999 !important;
+        }
+
+        .scroll-top-button:hover {
+            opacity: 0.8;
+            transition: 0.8s ease;
+        }
+
+        .hide-button {
+            display: none;
+        }
+
+        .scroll-top-button svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-top-button {
+                bottom: 10px;
+                right: 10px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Always Collapsed Navigation Header -->
+    <header class="dev-header">
+        <div class="dev-nav-container">
+            <a href="index.html" class="dev-logo">
+                👨‍💻 <span>Developer Tools</span>
+            </a>
+            
+            <button class="dev-menu-toggle" id="devMenuToggle" aria-label="Menu">
+                ☰
+            </button>
+            
+            <div class="dev-menu-wrapper" id="devMenuWrapper">
+                <ul class="dev-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="developer-tools.html">Developer Tools</a></li>
+                    <li><a href="education-and-research-tools.html">Education and Research Tools</a></li>
+                    <li><a href="entertainment-tools.html">Entertainment Tools</a></li>
+                    <li><a href="file-converter-tools.html">File Converter Tools</a></li>
+                    <li><a href="financial-tools.html">Financial Tools</a></li>
+                    <li><a href="font-and-text-tools.html">Font and Text Tools</a></li>
+                    <li><a href="health-and-fitness-tools.html">Health and Fitness Tools</a></li>
+                    <li><a href="media-edting-tools.html">Media Editing Tools</a></li>
+                    <li><a href="popular-services-tools.html">Popular Services Tools</a></li>
+                    <li><a href="privacy-and-anonymity-tools.html">Privacy and Anonymity Tools</a></li>
+                    <li><a href="ultimate-free-privacy-tools.html">Ultimate Free Privacy Tools</a></li>
+                    <li><a href="utility-tools.html">Utility Tools</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <div class="dev-overlay" id="devOverlay"></div>
+    
+    <section class="header">
+        <div class="header-content">
+            <h1 class="header-title">👨‍💻 Developer Tools – Essential Tools for Developers & Coders</h1>
+            <p class="header-description">Whether you're debugging code, formatting JSON, or testing regular expressions, these free tools are must-haves for developers. Enhance your workflow and efficiency with these reliable developer utilities.</p>
+        </div>
+    </section>
+    
+    <main>
+        <section class="container tools-container">
+            <h2 class="section-title">🔧 Top Developer Tools</h2>
+            
+            <div class="tool-card">
+                <div class="tool-image">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="JSON Formatter Tool">
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title"><span class="tool-number">1</span> JSON Formatter</h3>
+                    <span class="tool-url">🌐 Website: jsonformatter.org</span>
+                    <p class="tool-description">Format and validate your JSON data for easy debugging and readability. This tool helps you identify syntax errors, beautify minified JSON, and convert between JSON and other formats.</p>
+                    <a href="https://jsonformatter.org" target="_blank" class="tool-button">Visit Tool</a>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-image">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="CodePen Live Editor">
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title"><span class="tool-number">2</span> CodePen (Live Code Editor)</h3>
+                    <span class="tool-url">🌐 Website: codepen.io</span>
+                    <p class="tool-description">An online editor for HTML, CSS, and JavaScript with live preview. Great for prototyping and sharing code snippets. CodePen allows you to experiment with code and see results instantly.</p>
+                    <a href="https://codepen.io" target="_blank" class="tool-button">Visit Tool</a>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-image">
+                    <img src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="RegEx Tester Tool">
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title"><span class="tool-number">3</span> RegEx Tester</h3>
+                    <span class="tool-url">🌐 Website: regex101.com</span>
+                    <p class="tool-description">Test and debug regular expressions instantly with detailed explanations and matches. This powerful tool helps you understand exactly how your regex patterns work with live validation.</p>
+                    <a href="https://regex101.com" target="_blank" class="tool-button">Visit Tool</a>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-image">
+                    <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="HTTP Status Codes Reference">
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title"><span class="tool-number">4</span> HTTP Status Codes</h3>
+                    <span class="tool-url">🌐 Website: httpstatuses.com</span>
+                    <p class="tool-description">A comprehensive reference for HTTP status codes, including detailed descriptions and use cases. This resource helps developers understand web server responses and troubleshoot API issues.</p>
+                    <a href="https://httpstatuses.com" target="_blank" class="tool-button">Visit Tool</a>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-image">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Lorem Ipsum Generator">
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title"><span class="tool-number">5</span> Lorem Ipsum Generator</h3>
+                    <span class="tool-url">🌐 Website: lipsum.com</span>
+                    <p class="tool-description">Quickly generate placeholder text for use in designs, mockups, or testing environments. This classic tool allows you to specify exactly how much dummy text you need for your projects.</p>
+                    <a href="https://lipsum.com" target="_blank" class="tool-button">Visit Tool</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="why-use">
+            <div class="container">
+                <h2 class="section-title">✅ Why Use These Developer Tools?</h2>
+                <div class="features-container">
+                    <div class="feature-item">
+                        <div class="feature-icon">💻</div>
+                        <h3 class="feature-title">Speed Up Development</h3>
+                        <p>Streamline your workflow and complete tasks faster with specialized tools.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💻</div>
+                        <h3 class="feature-title">Easy Debugging</h3>
+                        <p>Identify and fix issues quickly with powerful debugging capabilities.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💻</div>
+                        <h3 class="feature-title">Test Regular Expressions</h3>
+                        <p>Validate and understand complex patterns with interactive feedback.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💻</div>
+                        <h3 class="feature-title">Quick Reference</h3>
+                        <p>Access essential information without having to search through documentation.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💻</div>
+                        <h3 class="feature-title">Placeholder Content</h3>
+                        <p>Generate dummy content quickly for layouts and design testing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="use-cases">
+            <div class="container">
+                <h2 class="section-title">💼 Use Cases</h2>
+                <div class="use-case-grid">
+                    <div class="use-case-item">
+                        <div class="use-case-icon">📘</div>
+                        <p class="use-case-text">Format JSON responses during API development</p>
+                    </div>
+                    <div class="use-case-item">
+                        <div class="use-case-icon">📘</div>
+                        <p class="use-case-text">Prototype front-end components with live feedback</p>
+                    </div>
+                    <div class="use-case-item">
+                        <div class="use-case-icon">📘</div>
+                        <p class="use-case-text">Validate and test complex regular expressions</p>
+                    </div>
+                    <div class="use-case-item">
+                        <div class="use-case-icon">📘</div>
+                        <p class="use-case-text">Understand meaning of HTTP error codes</p>
+                    </div>
+                    <div class="use-case-item">
+                        <div class="use-case-icon">📘</div>
+                        <p class="use-case-text">Fill UI with dummy text for layout preview</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="faq">
+            <div class="container">
+                <h2 class="section-title">❓ Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Are these tools beginner-friendly?
+                            <span class="toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! Each tool offers a user-friendly interface with guides and examples to help developers of all skill levels.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Do I need to install anything?
+                            <span class="toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No installation needed. These are online tools accessible from any browser, making them convenient to use on any device.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Are these tools free to use?
+                            <span class="toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, all listed tools are free and open for public use. Some may offer premium features, but the core functionality is available at no cost.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Can I use them on mobile devices?
+                            <span class="toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, most tools are mobile-responsive and work on phones and tablets, allowing you to be productive even when you're away from your computer.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Is my code or data stored online?
+                            <span class="toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tools like CodePen may store your code if saved. For sensitive data, use local tools or review their privacy policies to understand how your information is handled.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta">
+            <div class="container">
+                <h2 class="cta-title">🚀 Boost Your Coding Efficiency!</h2>
+                <p class="cta-text">These tools are designed to simplify your coding tasks and improve productivity. Bookmark and use them daily for a smoother development experience.</p>
+                <a href="#" class="cta-button">Get Started Now</a>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Developer Tools Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="scrollTopButton" class="scroll-top-button hide-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3 .4z"/>
+        </svg>
+    </div>
+
+    <script>
+         // Toggle menu functionality
+const devMenuToggle = document.getElementById('devMenuToggle');
+const devMenuWrapper = document.getElementById('devMenuWrapper');
+const devOverlay = document.getElementById('devOverlay');
+
+function toggleDevMenu() {
+    devMenuToggle.classList.toggle('active');
+    devMenuWrapper.classList.toggle('show-menu');
+    
+    // Create overlay if it doesn't exist
+    let overlay = document.getElementById('devOverlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'devOverlay';
+        overlay.className = 'dev-overlay';
+        document.body.appendChild(overlay);
+        
+        // Add click event to new overlay
+        overlay.addEventListener('click', toggleDevMenu);
+    }
+    
+    // Toggle overlay visibility
+    overlay.classList.toggle('show-overlay');
+    
+    // Prevent body scrolling when menu is open
+    if (devMenuWrapper.classList.contains('show-menu')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+}
+
+devMenuToggle.addEventListener('click', toggleDevMenu);
+
+// Close menu when clicking a menu item
+const menuItems = document.querySelectorAll('.dev-menu a');
+menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+        if (devMenuWrapper.classList.contains('show-menu')) {
+            toggleDevMenu();
+        }
+    });
+});
+        // Toggle FAQ answers with smooth animation
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentNode;
+                
+                // Close all other open FAQ items
+                document.querySelectorAll('.faq-item.active').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                        item.querySelector('.toggle').textContent = '+';
+                    }
+                });
+                
+                // Toggle the clicked item
+                faqItem.classList.toggle('active');
+                
+                const toggle = question.querySelector('.toggle');
+                toggle.textContent = faqItem.classList.contains('active') ? '+' : '+';
+            });
+        });
+
+    // Scroll to top functionality
+    const scrollTopButton = document.getElementById('scrollTopButton');
+
+    function checkScrollPosition() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            scrollTopButton.classList.remove('hide-button');
+        } else {
+            scrollTopButton.classList.add('hide-button');
+        }
+    }
+
+    window.addEventListener('scroll', checkScrollPosition);
+    window.addEventListener('load', checkScrollPosition);
+
+    scrollTopButton.onclick = function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+    </script>
+</body>
+</html>

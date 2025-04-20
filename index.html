@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online Tools – All-in-One Tool Collection</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn-icons-png.flaticon.com/512/5968/5968282.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn-icons-png.flaticon.com/512/5968/5968282.png">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968282.png">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #000000;
+            --text: #2E3233;
+            --accent: #01AEF2;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-title {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .header-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #666;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        /* Category Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .category-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-header {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .category-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .tool-item {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .tool-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .tool-link {
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: flex-start;
+            transition: color 0.2s;
+            width: 100%;
+        }
+        
+        .tool-link:hover {
+            color: var(--accent);
+        }
+        
+        .tool-link-icon {
+            margin-right: 0.5rem;
+            min-width: 20px;
+            color: var(--accent);
+        }
+        
+        .view-all {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(1, 174, 242, 0.3);
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .view-all:hover {
+            background-color: #0099d6;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(1, 174, 242, 0.4);
+        }
+        
+        /* Featured Section */
+        .featured {
+            background-color: var(--light-gray);
+            padding: 5rem 0;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .featured-tool {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .featured-tool:hover {
+            transform: translateY(-10px);
+        }
+        
+        .featured-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .featured-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .featured-url {
+            color: #666;
+            display: block;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .visit-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .visit-btn:hover {
+            background-color: #0099d6;
+            transform: translateY(-3px);
+        }
+        
+        /* CTA Section */
+        .cta {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 0;
+        }
+        
+        .cta-title {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-text {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(1, 174, 242, 0.3);
+        }
+        
+        .cta-button:hover {
+            background-color: #0099d6;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(1, 174, 242, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 900px) {
+            .header-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .featured-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .header-title {
+                font-size: 1.8rem;
+            }
+            
+            .header-description, .cta-text {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 3rem 1.5rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Custom scroll bar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0099d6;
+        }
+        
+        /* Bonus Tools Section */
+        .bonus-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .bonus-tool-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .bonus-tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .bonus-tool-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+        }
+        
+        .bonus-tool-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .bonus-tool-name {
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        @media (max-width: 600px) {
+            .bonus-tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Always Collapsed Navigation Header */
+        .dev-header {
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .dev-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dev-logo {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .dev-logo span {
+            margin-left: 0.5rem;
+        }
+
+        .dev-menu-toggle {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 10;
+            outline: none;
+        }
+
+        .dev-menu-toggle.active {
+            transform: rotate(90deg);
+        }
+
+        .dev-menu-wrapper {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100vh;
+            background-color: var(--primary);
+            transition: right 0.3s ease-in-out;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 9;
+            padding-top: 4rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dev-menu-wrapper.show-menu {
+            right: 0;
+        }
+
+        .dev-menu {
+            list-style: none;
+            padding: 0 0 2rem 0;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .dev-menu li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .dev-menu a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.85rem 1.5rem;
+            display: block;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dev-menu a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .dev-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 8;
+            display: none;
+        }
+
+        .dev-overlay.show-overlay {
+            display: block;
+        }
+
+        /* Add this at the end of the existing style section */
+        .scroll-top-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            text-align: center;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+            z-index: 9999 !important;
+        }
+
+        .scroll-top-button:hover {
+            opacity: 0.8;
+            transition: 0.8s ease;
+        }
+
+        .hide-button {
+            display: none;
+        }
+
+        .scroll-top-button svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-top-button {
+                bottom: 10px;
+                right: 10px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Always Collapsed Navigation Header -->
+    <header class="dev-header">
+        <div class="dev-nav-container">
+            <a href="index.html" class="dev-logo">
+                🛠️ <span>Ultimate Tools</span>
+            </a>
+            
+            <button class="dev-menu-toggle" id="devMenuToggle" aria-label="Menu">
+                ☰
+            </button>
+            
+            <div class="dev-menu-wrapper" id="devMenuWrapper">
+                <ul class="dev-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="developer-tools.html">Developer Tools</a></li>
+                    <li><a href="education-and-research-tools.html">Education and Research Tools</a></li>
+                    <li><a href="entertainment-tools.html">Entertainment Tools</a></li>
+                    <li><a href="file-converter-tools.html">File Converter Tools</a></li>
+                    <li><a href="financial-tools.html">Financial Tools</a></li>
+                    <li><a href="font-and-text-tools.html">Font and Text Tools</a></li>
+                    <li><a href="health-and-fitness-tools.html">Health and Fitness Tools</a></li>
+                    <li><a href="media-edting-tools.html">Media Editing Tools</a></li>
+                    <li><a href="popular-services-tools.html">Popular Services Tools</a></li>
+                    <li><a href="privacy-and-anonymity-tools.html">Privacy and Anonymity Tools</a></li>
+                    <li><a href="ultimate-free-privacy-tools.html">Ultimate Free Privacy Tools</a></li>
+                    <li><a href="utility-tools.html">Utility Tools</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <div class="dev-overlay" id="devOverlay"></div>
+
+    <section class="header">
+        <div class="header-content">
+            <h1 class="header-title">🛠️ Ultimate Free Online Tools Collection</h1>
+            <p class="header-description">Access a comprehensive collection of free online tools for privacy, development, media editing, entertainment, education, and more - all in one place!</p>
+        </div>
+    </section>
+    
+    <main>
+        <section class="container">
+            <h2 class="section-title">Explore Our Tool Categories</h2>
+            <p class="section-subtitle">Find the perfect tools for your needs across multiple categories</p>
+            
+            <div class="categories-grid">
+                <!-- Temporary Email Tools -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">📧</div>
+                        <h3 class="category-title">Temporary Email & Numbers</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <a href="https://temp-mail.org" class="tool-link">
+                                    <span class="tool-link-icon">📧</span>
+                                    TempMail (Disposable Email)
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://receive-sms.com" class="tool-link">
+                                    <span class="tool-link-icon">📱</span>
+                                    Receive-SMS (Virtual Number)
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://fakenumber.org" class="tool-link">
+                                    <span class="tool-link-icon">📊</span>
+                                    Fake Number Generator
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://burnermail.io" class="tool-link">
+                                    <span class="tool-link-icon">📨</span>
+                                    Burner Mail
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://10minutemail.com" class="tool-link">
+                                    <span class="tool-link-icon">⏱️</span>
+                                    10MinuteMail
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="ultimate-free-privacy-tools.html" class="view-all">View All Email Tools</a>
+                    </div>
+                </div>
+                
+                <!-- Privacy & Anonymity -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">🔒</div>
+                        <h3 class="category-title">Privacy & Anonymity</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <a href="https://freeproxylists.net" class="tool-link">
+                                    <span class="tool-link-icon">🌐</span>
+                                    Free Proxy List
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://hidemyass.com" class="tool-link">
+                                    <span class="tool-link-icon">🦸‍♂️</span>
+                                    HideMyAss (HMA) Proxy
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://vpnbook.com" class="tool-link">
+                                    <span class="tool-link-icon">🔐</span>
+                                    VPNBook (Free VPN)
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://torproject.org" class="tool-link">
+                                    <span class="tool-link-icon">🧅</span>
+                                    Tor Browser
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://iplogger.org" class="tool-link">
+                                    <span class="tool-link-icon">📍</span>
+                                    IP Logger
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="privacy-and-anonymity-tools.html" class="view-all">View All Privacy Tools</a>
+                    </div>
+                </div>
+                
+                <!-- Utility Tools -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">🔧</div>
+                        <h3 class="category-title">Utility Tools</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <a href="https://bit.ly" class="tool-link">
+                                    <span class="tool-link-icon">🔗</span>
+                                    Link Shortener
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://qr-code-generator.com" class="tool-link">
+                                    <span class="tool-link-icon">📱</span>
+                                    QR Code Generator
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://base64encode.org" class="tool-link">
+                                    <span class="tool-link-icon">🔄</span>
+                                    Base64 Encode/Decode
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://remove.bg" class="tool-link">
+                                    <span class="tool-link-icon">🖼️</span>
+                                    Remove Image BG
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://tinypng.com" class="tool-link">
+                                    <span class="tool-link-icon">🗜️</span>
+                                    TinyPNG (Image Compressor)
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="utility-tools.html" class="view-all">View All Utility Tools</a>
+                    </div>
+                </div>
+                
+                <!-- Developer Tools -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">👨‍💻</div>
+                        <h3 class="category-title">Developer Tools</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <a href="https://jsonformatter.org" class="tool-link">
+                                    <span class="tool-link-icon">{ }</span>
+                                    JSON Formatter
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://codepen.io" class="tool-link">
+                                    <span class="tool-link-icon">🖋️</span>
+                                    CodePen (Live Code Editor)
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://regex101.com" class="tool-link">
+                                    <span class="tool-link-icon">🔍</span>
+                                    RegEx Tester
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://httpstatuses.com" class="tool-link">
+                                    <span class="tool-link-icon">🌐</span>
+                                    HTTP Status Codes
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://lipsum.com" class="tool-link">
+                                    <span class="tool-link-icon">📝</span>
+                                    Lorem Ipsum Generator
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="developer-tools.html" class="view-all">View All Developer Tools</a>
+                    </div>
+                </div>
+                
+                <!-- Media Editing -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">🎨</div>
+                        <h3 class="category-title">Media Editing</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <a href="https://pixlr.com" class="tool-link">
+                                    <span class="tool-link-icon">🖼️</span>
+                                    Online Photo Editor
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://mp3cut.net" class="tool-link">
+                                    <span class="tool-link-icon">🎵</span>
+                                    MP3 Cutter
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://ytmp3.cc" class="tool-link">
+                                    <span class="tool-link-icon">🎬</span>
+                                    YouTube Video Downloader
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://emojikeyboard.org" class="tool-link">
+                                    <span class="tool-link-icon">😀</span>
+                                    Emoji Keyboard
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://imgflip.com/memegenerator" class="tool-link">
+                                    <span class="tool-link-icon">🤣</span>
+                                    Meme Generator
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="media-edting-tools.html" class="view-all">View All Media Tools</a>
+                    </div>
+                </div>
+                
+                <!-- Entertainment -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">🎮</div>
+                        <h3 class="category-title">Entertainment</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <a href="https://virtualpiano.net" class="tool-link">
+                                    <span class="tool-link-icon">🎹</span>
+                                    Online Piano
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://radio.garden" class="tool-link">
+                                    <span class="tool-link-icon">📻</span>
+                                    Radio Garden (Live Radio)
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://geoguessr.com" class="tool-link">
+                                    <span class="tool-link-icon">🗺️</span>
+                                    Geoguessr (Location Guessing Game)
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://play2048.co" class="tool-link">
+                                    <span class="tool-link-icon">🎲</span>
+                                    2048 Game
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://agar.io" class="tool-link">
+                                    <span class="tool-link-icon">🔴</span>
+                                    Agar.io (Online Game)
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="entertainment-tools.html" class="view-all">View All Entertainment</a>
+                    </div>
+                </div>
+                
+                <!-- Education & Research -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">📚</div>
+                        <h3 class="category-title">Education & Research</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <a href="https://scholar.google.com" class="tool-link">
+                                    <span class="tool-link-icon">🎓</span>
+                                    Google Scholar
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://sci-hub.se" class="tool-link">
+                                    <span class="tool-link-icon">📄</span>
+                                    Sci-Hub (Free Research Papers)
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://wolframalpha.com" class="tool-link">
+                                    <span class="tool-link-icon">🧮</span>
+                                    Wolfram Alpha
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://duolingo.com" class="tool-link">
+                                    <span class="tool-link-icon">🗣️</span>
+                                    Duolingo (Free Language Learning)
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://coursera.org" class="tool-link">
+                                    <span class="tool-link-icon">🧠</span>
+                                    Coursera (Free Courses)
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="education-and-research-tools.html" class="view-all">View All Educational Tools</a>
+                    </div>
+                </div>
+                
+                <!-- Font & Text Tools -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">🔤</div>
+                        <h3 class="category-title">Font & Text Tools</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <a href="https://fonts.google.com" class="tool-link">
+                                    <span class="tool-link-icon">🔠</span>
+                                    Google Fonts
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://fontgeneratoronline.com" class="tool-link">
+                                    <span class="tool-link-icon">🖋️</span>
+                                    Font Generator (Fancy Text)
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://unicode-table.com" class="tool-link">
+                                    <span class="tool-link-icon">📋</span>
+                                    Unicode Converter
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://patorjk.com" class="tool-link">
+                                    <span class="tool-link-icon">🎨</span>
+                                    Text to ASCII Art
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://wordcounter.net" class="tool-link">
+                                    <span class="tool-link-icon">📊</span>
+                                    Word Counter
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="font-and-text-tools.html" class="view-all">View All Text Tools</a>
+                    </div>
+                </div>
+                
+                <!-- File Converters -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">🔄</div>
+                        <h3 class="category-title">File Converters</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <a href="https://online-convert.com" class="tool-link">
+                                    <span class="tool-link-icon">📁</span>
+                                    Online Convert
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://zamzar.com" class="tool-link">
+                                    <span class="tool-link-icon">🔄</span>
+                                    Zamzar (File Converter)
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://pdftoword.com" class="tool-link">
+                                    <span class="tool-link-icon">📄</span>
+                                    PDF to Word
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://onlinevideoconverter.com" class="tool-link">
+                                    <span class="tool-link-icon">🎞️</span>
+                                    MP4 to MP3
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://smallpdf.com" class="tool-link">
+                                    <span class="tool-link-icon">📎</span>
+                                    Compress PDF
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="file-converter-tools.html" class="view-all">View All File Converters</a>
+                    </div>
+                </div>
+                
+                <!-- Financial Tools -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">💰</div>
+                        <h3 class="category-title">Financial Tools</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <a href="https://xe.com" class="tool-link">
+                                    <span class="tool-link-icon">💱</span>
+                                    Currency Converter
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://google.com/finance" class="tool-link">
+                                    <span class="tool-link-icon">📈</span>
+                                    Google Finance
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://bmi-calculator.net" class="tool-link">
+                                    <span class="tool-link-icon">📏</span>
+                                    BMI Calculator
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://bankrate.com" class="tool-link">
+                                    <span class="tool-link-icon">🏦</span>
+                                    Loan Calculator
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://fakecardgenerator.com" class="tool-link">
+                                    <span class="tool-link-icon">💳</span>
+                                    Fake Credit Card Generator
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="financial-tools.html" class="view-all">View All Financial Tools</a>
+                    </div>
+                </div>
+                
+                <!-- Health & Fitness -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">💪</div>
+                        <h3 class="category-title">Health & Fitness</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <a href="https://caloriecalculator.net" class="tool-link">
+                                    <span class="tool-link-icon">🍎</span>
+                                    Calorie Calculator
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://sleepcalculator.com" class="tool-link">
+                                    <span class="tool-link-icon">😴</span>
+                                    Sleep Calculator
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://flo.health" class="tool-link">
+                                    <span class="tool-link-icon">📅</span>
+                                    Period Tracker
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://nih.gov" class="tool-link">
+                                    <span class="tool-link-icon">📏</span>
+                                    BMI Calculator
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://headspace.com" class="tool-link">
+                                    <span class="tool-link-icon">🧘</span>
+                                    Meditation (Headspace)
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="health-and-fitness-tools.html" class="view-all">View All Health Tools</a>
+                    </div>
+                </div>
+                
+                <!-- Other Popular Services -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">🌟</div>
+                        <h3 class="category-title">Other Popular Services</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <a href="https://archive.org" class="tool-link">
+                                    <span class="tool-link-icon">📚</span>
+                                    Wayback Machine
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://speedtest.net" class="tool-link">
+                                    <span class="tool-link-icon">⚡</span>
+                                    Speed Test
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://accuweather.com" class="tool-link">
+                                    <span class="tool-link-icon">🌤️</span>
+                                    Weather Forecast
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://translate.google.com" class="tool-link">
+                                    <span class="tool-link-icon">🌐</span>
+                                    Google Translate
+                                </a>
+                            </li>
+                            <li class="tool-item">
+                                <a href="https://passwordsgenerator.net" class="tool-link">
+                                    <span class="tool-link-icon">🔑</span>
+                                    Random Password Generator
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="popular-services-tools.html" class="view-all">View All Popular Services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Bonus Tools Section -->
+        <section class="container">
+            <h2 class="section-title">Bonus: 40+ Additional Tools</h2>
+            <p class="section-subtitle">Discover even more useful online tools to enhance your productivity</p>
+            
+            <div class="bonus-tools-grid">
+                <div class="bonus-tool-card">
+                    <a href="https://receive-sms-online.info" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">📱</span>
+                        <span class="bonus-tool-name">Temp Phone Number</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://fakeaddressgenerator.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🏠</span>
+                        <span class="bonus-tool-name">Fake Address Generator</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://naturalreaders.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🗣️</span>
+                        <span class="bonus-tool-name">Text to Speech</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://voicechanger.io" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🎤</span>
+                        <span class="bonus-tool-name">Voice Changer</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://duplichecker.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🔍</span>
+                        <span class="bonus-tool-name">Plagiarism Checker</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://grammarly.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">✍️</span>
+                        <span class="bonus-tool-name">Grammar Checker</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://clipboardjs.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">📋</span>
+                        <span class="bonus-tool-name">Temporary Clipboard</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://youtubethumbnaildownloader.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🖼️</span>
+                        <span class="bonus-tool-name">YouTube Thumbnail Downloader</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://downloadgram.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">📸</span>
+                        <span class="bonus-tool-name">Instagram Downloader</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://twittervideodownloader.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🎥</span>
+                        <span class="bonus-tool-name">Twitter Video Downloader</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://rss.app" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">📰</span>
+                        <span class="bonus-tool-name">RSS Feed Generator</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://screenshotmachine.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">📱</span>
+                        <span class="bonus-tool-name">Website Screenshot</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://whois.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🌐</span>
+                        <span class="bonus-tool-name">Domain Age Checker</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://alexa.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">📊</span>
+                        <span class="bonus-tool-name">Alexa Rank Checker</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://snaptik.app" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🎵</span>
+                        <span class="bonus-tool-name">TikTok Downloader</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://ytmp3.cc" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🎵</span>
+                        <span class="bonus-tool-name">YouTube to MP3</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://giphy.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🎬</span>
+                        <span class="bonus-tool-name">GIF Maker</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://myanimelist.net" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🎭</span>
+                        <span class="bonus-tool-name">Anime List Tracker</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://mangadex.org" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">📚</span>
+                        <span class="bonus-tool-name">Manga Reader</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://icanhazdadjoke.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">😄</span>
+                        <span class="bonus-tool-name">Random Joke Generator</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://genius.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🎵</span>
+                        <span class="bonus-tool-name">Lyrics Finder</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://astrostyle.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">✨</span>
+                        <span class="bonus-tool-name">Horoscope</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://barcode.tec-it.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">📊</span>
+                        <span class="bonus-tool-name">Barcode Generator</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://asciiart.eu" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🎨</span>
+                        <span class="bonus-tool-name">ASCII Art Generator</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://morsecode.world" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🔤</span>
+                        <span class="bonus-tool-name">Morse Code Translator</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://zip-codes.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">📍</span>
+                        <span class="bonus-tool-name">Zip Code Finder</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://solarsystemscope.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🌌</span>
+                        <span class="bonus-tool-name">Solar System Simulator</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://skribbl.io" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🎨</span>
+                        <span class="bonus-tool-name">Pictionary Online</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://chess.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">♟️</span>
+                        <span class="bonus-tool-name">Chess Online</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://sudoku.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🔢</span>
+                        <span class="bonus-tool-name">Sudoku Online</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://10fastfingers.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">⌨️</span>
+                        <span class="bonus-tool-name">Typing Speed Test</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://coinmarketcap.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">💰</span>
+                        <span class="bonus-tool-name">Crypto Price Tracker</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://investopedia.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">📈</span>
+                        <span class="bonus-tool-name">Stock Market Simulator</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://deepai.org" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🤖</span>
+                        <span class="bonus-tool-name">AI Text Generator</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://colorpicker.me" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🎨</span>
+                        <span class="bonus-tool-name">Color Picker</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://cssgradient.io" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🌈</span>
+                        <span class="bonus-tool-name">Gradient Generator</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://vectr.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">✏️</span>
+                        <span class="bonus-tool-name">SVG Editor</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://sketchfab.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🎮</span>
+                        <span class="bonus-tool-name">3D Model Viewer</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://dnasequences.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">🧬</span>
+                        <span class="bonus-tool-name">DNA Generator</span>
+                    </a>
+                </div>
+                <div class="bonus-tool-card">
+                    <a href="https://thispersondoesnotexist.com" class="bonus-tool-link">
+                        <span class="bonus-tool-icon">👤</span>
+                        <span class="bonus-tool-name">AI Face Generator</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="scrollTopButton" class="scroll-top-button hide-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3 .4z"/>
+        </svg>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Free Online Tools Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle menu functionality
+        const devMenuToggle = document.getElementById('devMenuToggle');
+        const devMenuWrapper = document.getElementById('devMenuWrapper');
+        const devOverlay = document.getElementById('devOverlay');
+
+        function toggleDevMenu() {
+            devMenuToggle.classList.toggle('active');
+            devMenuWrapper.classList.toggle('show-menu');
+            
+            // Create overlay if it doesn't exist
+            let overlay = document.getElementById('devOverlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.id = 'devOverlay';
+                overlay.className = 'dev-overlay';
+                document.body.appendChild(overlay);
+                
+                // Add click event to new overlay
+                overlay.addEventListener('click', toggleDevMenu);
+            }
+            
+            // Toggle overlay visibility
+            overlay.classList.toggle('show-overlay');
+            
+            // Prevent body scrolling when menu is open
+            if (devMenuWrapper.classList.contains('show-menu')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        devMenuToggle.addEventListener('click', toggleDevMenu);
+
+        // Close menu when clicking a menu item
+        const menuItems = document.querySelectorAll('.dev-menu a');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if (devMenuWrapper.classList.contains('show-menu')) {
+                    toggleDevMenu();
+                }
+            });
+        });
+
+        // Scroll to top functionality
+        const scrollTopButton = document.getElementById('scrollTopButton');
+
+        function checkScrollPosition() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollTopButton.classList.remove('hide-button');
+            } else {
+                scrollTopButton.classList.add('hide-button');
+            }
+        }
+
+        window.addEventListener('scroll', checkScrollPosition);
+        window.addEventListener('load', checkScrollPosition);
+
+        scrollTopButton.onclick = function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+    </script>
+</body>
+</html>

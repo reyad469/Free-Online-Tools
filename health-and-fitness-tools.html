@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & Fitness – Track, Plan & Improve Your Health</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn-icons-png.flaticon.com/512/5968/5968282.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn-icons-png.flaticon.com/512/5968/5968282.png">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968282.png">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #000000;
+            --text: #2E3233;
+            --accent: #01AEF2;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Always Collapsed Navigation Header */
+        .dev-header {
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .dev-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dev-logo {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .dev-logo span {
+            margin-left: 0.5rem;
+        }
+        
+        .dev-menu-toggle {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 10;
+            outline: none;
+        }
+        
+        .dev-menu-toggle.active {
+            transform: rotate(90deg);
+        }
+        
+        .dev-menu-wrapper {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100vh;
+            background-color: var(--primary);
+            transition: right 0.3s ease-in-out;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 9;
+            padding-top: 4rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dev-menu-wrapper.show-menu {
+            right: 0;
+        }
+        
+        .dev-menu {
+            list-style: none;
+            padding: 0 0 2rem 0;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        
+        .dev-menu li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .dev-menu a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.85rem 1.5rem;
+            display: block;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .dev-menu a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .dev-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 8;
+            display: none;
+        }
+        
+        .dev-overlay.show-overlay {
+            display: block;
+        }
+        
+        .header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .header-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent);
+        }
+        
+        /* Tool Layout - Horizontal Cards */
+        .tools-container {
+            padding: 2rem 0;
+        }
+        
+        .tool-card {
+            display: flex;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tool-card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .tool-image {
+            flex: 0 0 300px;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .tool-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .tool-card:hover .tool-image img {
+            transform: scale(1.1);
+        }
+        
+        .tool-content {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .tool-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tool-number {
+            background-color: var(--accent);
+            color: var(--white);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .tool-url {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: block;
+        }
+        
+        .tool-description {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        .tool-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            align-self: flex-start;
+            box-shadow: 0 4px 10px rgba(1, 174, 242, 0.3);
+        }
+        
+        .tool-button:hover {
+            background-color: #0099d6;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(1, 174, 242, 0.4);
+        }
+        
+        /* Features Section */
+        .why-use {
+            background-color: var(--light-gray);
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-item {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        /* Use Cases Section */
+        .use-cases {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+        
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .use-case-item {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            transition: transform 0.3s;
+            border-top: 4px solid var(--accent);
+        }
+        
+        .use-case-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .use-case-icon {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .use-case-text {
+            font-size: 1.1rem;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background-color: var(--light-gray);
+            padding: 5rem 0;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: var(--white);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .faq-question:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .toggle {
+            background-color: var(--accent);
+            color: var(--white);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .toggle {
+            transform: rotate(135deg);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 6rem 0;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-text {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(1, 174, 242, 0.3);
+        }
+        
+        .cta-button:hover {
+            background-color: #0099d6;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(1, 174, 242, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 900px) {
+            .tool-card, .tool-card:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .tool-image {
+                flex: 0 0 200px;
+                width: 100%;
+            }
+            
+            .header-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .header-title {
+                font-size: 1.8rem;
+            }
+            
+            .header-description, .tool-description, .cta-text {
+                font-size: 1rem;
+            }
+            
+            .tool-title {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        /* Style for the scroll-to-top button */
+        .scroll-top-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #01AEF2;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            text-align: center;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+            z-index: 9999 !important;
+        }
+
+        /* Hover effect */
+        .scroll-top-button:hover {
+            opacity: 0.8;
+            transition: 0.8s ease;
+        }
+
+        /* Hide the button when at the top */
+        .hide-button {
+            display: none;
+        }
+
+        /* Style the SVG icon */
+        .scroll-top-button svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        /* Ensure the button works well on mobile screens */
+        @media (max-width: 768px) {
+            .scroll-top-button {
+                bottom: 10px;
+                right: 10px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Always Collapsed Navigation Header -->
+    <header class="dev-header">
+        <div class="dev-nav-container">
+            <a href="index.html" class="dev-logo">
+                🏋️‍♂️ <span>  Health & Fitness Tools</span>
+            </a>
+            
+            <button class="dev-menu-toggle" id="devMenuToggle" aria-label="Menu">
+                ☰
+            </button>
+            
+            <div class="dev-menu-wrapper" id="devMenuWrapper">
+                <ul class="dev-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="developer-tools.html">Developer Tools</a></li>
+                    <li><a href="education-and-research-tools.html">Education and Research Tools</a></li>
+                    <li><a href="entertainment-tools.html">Entertainment Tools</a></li>
+                    <li><a href="file-converter-tools.html">File Converter Tools</a></li>
+                    <li><a href="financial-tools.html">Financial Tools</a></li>
+                    <li><a href="font-and-text-tools.html">Font and Text Tools</a></li>
+                    <li><a href="health-and-fitness-tools.html">Health and Fitness Tools</a></li>
+                    <li><a href="media-edting-tools.html">Media Editing Tools</a></li>
+                    <li><a href="popular-services-tools.html">Popular Services Tools</a></li>
+                    <li><a href="privacy-and-anonymity-tools.html">Privacy and Anonymity Tools</a></li>
+                    <li><a href="ultimate-free-privacy-tools.html">Ultimate Free Privacy Tools</a></li>
+                    <li><a href="utility-tools.html">Utility Tools</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <div class="dev-overlay" id="devOverlay"></div>
+
+    <section class="header">
+        <div class="header-content">
+            <h1 class="header-title">🏃‍♂️ Health & Fitness – Track, Plan & Improve Your Health</h1>
+            <p class="header-description">Stay on top of your fitness and wellness journey with these free health tools. Whether you're calculating calories, tracking sleep, or practicing meditation, these tools will guide you toward a healthier lifestyle.</p>
+        </div>
+    </section>
+    
+    <main>
+        <section class="container tools-container">
+            <h2 class="section-title">🏋️‍♂️ Top Health & Fitness Tools</h2>
+            
+            <div class="tool-card">
+                <div class="tool-image">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Calorie Calculator">
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title"><span class="tool-number">1</span> Calorie Calculator</h3>
+                    <span class="tool-url">🌐 Website: caloriecalculator.net</span>
+                    <p class="tool-description">Calculate your daily calorie needs based on your goals, activity level, and body metrics.</p>
+                    <a href="https://caloriecalculator.net" target="_blank" class="tool-button">Visit Tool</a>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-image">
+                    <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Sleep Calculator">
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title"><span class="tool-number">2</span> Sleep Calculator</h3>
+                    <span class="tool-url">🌐 Website: sleepcalculator.com</span>
+                    <p class="tool-description">Determine the best time to sleep and wake up based on your natural sleep cycles to improve your rest and productivity.</p>
+                    <a href="https://sleepcalculator.com" target="_blank" class="tool-button">Visit Tool</a>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Period Tracker">
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title"><span class="tool-number">3</span> Period Tracker</h3>
+                    <span class="tool-url">🌐 Website: flo.health</span>
+                    <p class="tool-description">Track your menstrual cycle, predict your period, and monitor your health for better fertility and wellness.</p>
+                    <a href="https://flo.health" target="_blank" class="tool-button">Visit Tool</a>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-image">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="BMI Calculator">
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title"><span class="tool-number">4</span> BMI Calculator</h3>
+                    <span class="tool-url">🌐 Website: nih.gov</span>
+                    <p class="tool-description">Calculate your Body Mass Index (BMI) to assess your health status and understand your weight category.</p>
+                    <a href="https://nih.gov" target="_blank" class="tool-button">Visit Tool</a>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-image">
+                    <img src="https://images.unsplash.com/photo-1601134467661-3d775b999c8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Meditation (Headspace)">
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title"><span class="tool-number">5</span> Meditation (Headspace)</h3>
+                    <span class="tool-url">🌐 Website: headspace.com</span>
+                    <p class="tool-description">Practice mindfulness and guided meditation to improve mental health, reduce stress, and enhance focus.</p>
+                    <a href="https://headspace.com" target="_blank" class="tool-button">Visit Tool</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="why-use">
+            <div class="container">
+                <h2 class="section-title">✅ Why Use These Tools?</h2>
+                <div class="features-container">
+                    <div class="feature-item">
+                        <div class="feature-icon">🏋️‍♂️</div>
+                        <h3 class="feature-title">Track calories and create a balanced diet plan</h3>
+                        <p>Monitor your nutritional intake and maintain a healthy diet tailored to your specific needs.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💤</div>
+                        <h3 class="feature-title">Improve sleep quality and establish healthy sleeping habits</h3>
+                        <p>Optimize your sleep schedule for better rest and increased daytime energy.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌸</div>
+                        <h3 class="feature-title">Keep track of your menstrual cycle for health insights</h3>
+                        <p>Understand your body's patterns for better reproductive health and planning.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📏</div>
+                        <h3 class="feature-title">Monitor your BMI to ensure you're in a healthy weight range</h3>
+                        <p>Stay informed about your body composition and weight status relative to health standards.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🧘‍♂️</div>
+                        <h3 class="feature-title">Meditate to relax, manage stress, and enhance well-being</h3>
+                        <p>Practice mindfulness techniques that improve mental clarity and emotional balance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="use-cases">
+            <div class="container">
+                <h2 class="section-title">📘 Use Cases</h2>
+                <div class="use-case-grid">
+                    <div class="use-case-item">
+                        <div class="use-case-icon">🥗</div>
+                        <p class="use-case-text">Plan your diet effectively for weight loss, gain, or maintenance</p>
+                    </div>
+                    <div class="use-case-item">
+                        <div class="use-case-icon">🛌</div>
+                        <p class="use-case-text">Optimize your sleep for better energy and health</p>
+                    </div>
+                    <div class="use-case-item">
+                        <div class="use-case-icon">📅</div>
+                        <p class="use-case-text">Gain insights into your cycle, fertility, and overall health</p>
+                    </div>
+                    <div class="use-case-item">
+                        <div class="use-case-icon">⚖️</div>
+                        <p class="use-case-text">Monitor your weight and health status to achieve fitness goals</p>
+                    </div>
+                    <div class="use-case-item">
+                        <div class="use-case-icon">🧠</div>
+                        <p class="use-case-text">Improve your mental clarity and emotional balance with guided meditation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="faq">
+            <div class="container">
+                <h2 class="section-title">❓ Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Are these tools free to use?
+                            <span class="toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, all tools are free to use for their core functionalities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            How accurate is the Calorie Calculator?
+                            <span class="toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The Calorie Calculator provides estimates based on your provided information, which may vary depending on individual metabolic rates.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Can I use the Period Tracker for fertility tracking?
+                            <span class="toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, Flo provides insights into fertility and ovulation, helping with conception planning.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Do I need to sign up to use the Meditation tool?
+                            <span class="toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, Headspace offers both free and premium options, and signing up allows you to access personalized meditation sessions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta">
+            <div class="container">
+                <h2 class="cta-title">🌟 Improve Your Health & Fitness</h2>
+                <p class="cta-text">Achieve a better version of yourself with these free tools that support your physical and mental well-being. Stay fit, sleep better, eat healthy, and reduce stress with ease.</p>
+                <a href="#" class="cta-button">Get Started Now</a>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Health & Fitness Tools Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div id="scrollTopButton" class="scroll-top-button hide-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3 .4z"/>
+        </svg>
+    </div>
+
+    <script>
+        // Toggle menu functionality
+        const devMenuToggle = document.getElementById('devMenuToggle');
+        const devMenuWrapper = document.getElementById('devMenuWrapper');
+        const devOverlay = document.getElementById('devOverlay');
+
+        function toggleDevMenu() {
+            devMenuToggle.classList.toggle('active');
+            devMenuWrapper.classList.toggle('show-menu');
+            
+            // Create overlay if it doesn't exist
+            let overlay = document.getElementById('devOverlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.id = 'devOverlay';
+                overlay.className = 'dev-overlay';
+                document.body.appendChild(overlay);
+                
+                // Add click event to new overlay
+                overlay.addEventListener('click', toggleDevMenu);
+            }
+            
+            // Toggle overlay visibility
+            overlay.classList.toggle('show-overlay');
+            
+            // Prevent body scrolling when menu is open
+            if (devMenuWrapper.classList.contains('show-menu')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        devMenuToggle.addEventListener('click', toggleDevMenu);
+
+        // Close menu when clicking a menu item
+        const menuItems = document.querySelectorAll('.dev-menu a');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if (devMenuWrapper.classList.contains('show-menu')) {
+                    toggleDevMenu();
+                }
+            });
+        });
+
+        // Toggle FAQ answers with smooth animation
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentNode;
+                
+                // Close all other open FAQ items
+                document.querySelectorAll('.faq-item.active').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                        item.querySelector('.toggle').textContent = '+';
+                    }
+                });
+                
+                // Toggle the clicked item
+                faqItem.classList.toggle('active');
+                
+                const toggle = question.querySelector('.toggle');
+                toggle.textContent = faqItem.classList.contains('active') ? '+' : '+';
+            });
+        });
+
+        // Get the button element
+        const scrollTopButton = document.getElementById('scrollTopButton');
+
+        // Function to check the scroll position and show the button when scrolling down
+        function checkScrollPosition() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                // If scrolled more than 100px, show the button
+                scrollTopButton.classList.remove('hide-button');
+            } else {
+                // Otherwise, hide the button
+                scrollTopButton.classList.add('hide-button');
+            }
+        }
+
+        // Trigger the scroll check on initial load and on scroll
+        window.addEventListener('scroll', checkScrollPosition);
+        window.addEventListener('load', checkScrollPosition);
+
+        // When the button is clicked, scroll to the top of the page
+        scrollTopButton.onclick = function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+    </script>
+</body>
+</html>
